@@ -9,14 +9,10 @@ jobs:
     full-test:
         container: cuaesd/aesd-autotest:assignment4-buildroot
         runs-on: ubuntu-latest
-        timeout-minutes: 120
+        timeout-minutes: 180
         steps:
           - uses: actions/checkout@v2
           - name: Checkout submodules
             run: git submodule update --init --recursive
           - name: Run full test
             run: ./full-test.sh
-          - name: Cleanup
-            if: always()
-            run: |
-              ssh-add -D

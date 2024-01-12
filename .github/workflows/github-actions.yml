@@ -14,5 +14,8 @@ jobs:
           - uses: actions/checkout@v2
           - name: Checkout submodules
             run: git submodule update --init --recursive
+          - uses: webfactory/ssh-agent@v0.5.3
           - name: Run full test
+            env:
+              GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
             run: ./full-test.sh
